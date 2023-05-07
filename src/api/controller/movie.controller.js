@@ -25,11 +25,11 @@ const getMoviesId = async (req, res) => {
     
 }
 
-// Devuelve una película según su título
+// Devuelve el director de la película según su título
 const getMoviesTitle = async (req, res) => {
     try{
         const {title} = req.params; 
-        const getMovieTitle = await Movie.find({title: title});
+        const getMovieTitle = await Movie.find({title: title},{_id:0, director:1});
         return res.status(200).json(getMovieTitle);
     }catch(error){
         return res.status(500).json(error);
@@ -37,7 +37,7 @@ const getMoviesTitle = async (req, res) => {
     
 }
 
-// Devuelve una película según su género
+// Devuelve películas según su género
 const getMoviesGenre = async (req, res) => {
     try{
         const {genre} = req.params; 
@@ -49,7 +49,7 @@ const getMoviesGenre = async (req, res) => {
     
 }
 
-// Devuelve una películas a partir del año 2010 (incluyendo 2010)
+// Devuelve películas a partir del año 2010 (incluyendo 2010)
 const getMoviesYear2010 = async (req, res) => {
     try{
         const getMovieYear = await Movie.find({year: {$gte:2010}});
@@ -59,7 +59,8 @@ const getMoviesYear2010 = async (req, res) => {
     }
     
 }
-
+// A PARTIR DE AQUÍ ES A MAYORES, NO SE PIDE EN EL PROYECT 1
+// Introduce una película nueva en la DB
 const postMovies = async (req, res) => {
     try{
         const newMovie = new Movie(req.body);
@@ -71,7 +72,7 @@ const postMovies = async (req, res) => {
 }
 
 const putMovies = async (req, res) => {
-    
+// Modifica una película enviando id por la url y datos nuevos por el body
     try{
         const {id} = req.params;
         const putMovie = new Movie(req.body);
@@ -85,7 +86,7 @@ const putMovies = async (req, res) => {
         return res.status(500).json(error)
     }
 }
-
+// Elimina películas de la base de datos mandando su id por la url
 const deleteMovies = async (req, res) => {
     try{
         const {id} = req.params;
@@ -106,7 +107,7 @@ module.exports = {
     getMoviesTitle,
     getMoviesGenre,
     getMoviesYear2010,
-
+    // A mayores, no se pide en el enunciado de project 1
     postMovies, 
     putMovies, 
     deleteMovies, 

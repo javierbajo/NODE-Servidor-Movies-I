@@ -9,8 +9,8 @@ GET http://localhost:3000/movies/id/6455971c8cfbabd997af3be7
 Content-Type: application/json
 ###
 
-// Muestra una película según su título
-GET http://localhost:3000/movies/title/Buscando%20a%20Nemo
+// Muestrael director de una peli según su título
+GET http://localhost:3000/movies/title/Os Bingueiros
 Content-Type: application/json
 ###
 
